@@ -37,7 +37,10 @@ function WebRoutes() {
                 <Route path="/" element={<Home />} />
                 {isAuthenticated ? (
                     <Route path="/dashboard" element={<DashboardLayout />}>
-                        
+                        <Route path="wallet" element={<Wallet />} />
+                        <Route path="profile" element={<Profile />} />
+                        <Route path="analysis" element={<Analysis />} />
+                        <Route path="upload" element={<Upload />} />
                     </Route>
                 ) : null}
             </Routes>
