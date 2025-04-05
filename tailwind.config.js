@@ -19,6 +19,20 @@ export default {
 				'noirProRedular': ['"noirProRegular"', 'regular'],
 				'noirProBold': ['"noirProBold"', 'bold'],
 				'noirProHeavy': ['"noirProHeavy"', 'heavy'],
+
+				'googleSansThin': ['GoogleSans-Thin', 'sans-serif'],
+				'googleSansLight': ['GoogleSans-Light', 'sans-serif'],
+				'googleSansRegular': ['GoogleSans-Regular', 'sans-serif'],
+				'googleSansMedium': ['GoogleSans-Medium', 'sans-serif'],
+				'googleSansBold': ['GoogleSans-Bold', 'sans-serif'],
+				'googleSansBlack': ['GoogleSans-Black', 'sans-serif'],
+
+				'googleSansThinItalic': ['GoogleSans-ThinItalic', 'sans-serif'],
+				'googleSansLightItalic': ['GoogleSans-LightItalic', 'sans-serif'],
+				'googleSansRegularItalic': ['GoogleSans-RegularItalic', 'sans-serif'],
+				'googleSansMediumItalic': ['GoogleSans-MediumItalic', 'sans-serif'],
+				'googleSansBoldItalic': ['GoogleSans-BoldItalic', 'sans-serif'],
+				'googleSansBlackItalic': ['GoogleSans-BlackItalic', 'sans-serif'],
 		  	},
 			backdropBlur: {
                 md: '12px',
