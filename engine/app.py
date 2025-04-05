@@ -292,6 +292,8 @@ def overlay_signature_endpoint():
    
    except Exception as e:
        return jsonify({"status":"error","message":str(e)})
+   
+   
 
 # Add OPTIONS handler for preflight requests
 @app.route('/register-student', methods=['OPTIONS'])

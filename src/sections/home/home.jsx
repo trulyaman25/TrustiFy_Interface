@@ -16,21 +16,9 @@ function Home() {
 		setIsAuthPanelOpen(true)
 	}
 
-	const handleStudentSignup = () => {
-		setUserType('student')
-		setAuthMode('signup')
-		setIsAuthPanelOpen(true)
-	}
-
 	const handleCompanyLogin = () => {
 		setUserType('company')
 		setAuthMode('login')
-		setIsAuthPanelOpen(true)
-	}
-
-	const handleCompanySignup = () => {
-		setUserType('company')
-		setAuthMode('signup')
 		setIsAuthPanelOpen(true)
 	}
 
@@ -47,19 +35,19 @@ function Home() {
 
 							<div className="flex flex-row justify-center items-center gap-4">
 								<NavLink to="" className="px-4 py-2 transition-all duration-300 w-fit flex flex-row justify-center items-center font-googleSansLight text-black hover:text-[#6536ff]" onClick={() => window.scrollTo({ top: document.getElementById("home").offsetTop, behavior: "smooth" })} >
-								home
+									home
 								</NavLink>
 
 								<NavLink to="" className="px-4 py-2 transition-all duration-300 w-fit flex flex-row justify-center items-center font-googleSansLight text-black hover:text-[#6536ff]" onClick={() => window.scrollTo({ top: document.getElementById("about").offsetTop, behavior: "smooth" })} >
-								about
+									about
 								</NavLink>
 
 								<NavLink to="" className="px-4 py-2 transition-all duration-300 w-fit flex flex-row justify-center items-center font-googleSansLight text-black hover:text-[#6536ff]" onClick={() => window.scrollTo({ top: document.getElementById("team").offsetTop, behavior: "smooth" })} >
-								team
+									team
 								</NavLink>
 
 								<NavLink to="" className="px-4 py-2 transition-all duration-300 w-fit flex flex-row justify-center items-center font-googleSansLight text-black hover:text-[#6536ff]" onClick={() => window.scrollTo({ top: document.getElementById("team").offsetTop, behavior: "smooth" })} >
-								contact us
+									contact us
 								</NavLink>
 							</div>
 						</div>

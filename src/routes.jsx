@@ -15,6 +15,8 @@ import CompanySignIn from './sections/auth/companyAuth/companySignIn';
 import CompanySignUp from './sections/auth/companyAuth/companySignUp';
 
 import CompanyAnalysis from './sections/companyDashboard/pages/analysis/analysis';
+import CompanyUpload from './sections/companyDashboard/pages/upload/upload';
+import CompanySettings from './sections/companyDashboard/pages/settings/settings';
 
 import UserDashboardLayout from './sections/userDashboard/userdashboardLayout';
 import CompanyDashboardLayout from './sections/companyDashboard/companyDashboardLayout';
@@ -59,6 +61,8 @@ function WebRoutes() {
 
                 <Route path="/company" element={<CompanyDashboardLayout />}>
                     <Route path="dashboard/:companyId" element={<CompanyAnalysis />} />
+                    <Route path="upload/:companyId" element={<CompanyUpload />} />
+                    <Route path="settings/:companyId" element={<CompanySettings />} />
                 </Route>
             </Routes>
             
