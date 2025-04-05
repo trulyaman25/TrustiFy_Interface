@@ -14,7 +14,10 @@ import StudentSignUp from './sections/auth/studentAuth/studentSignUp';
 import CompanySignIn from './sections/auth/companyAuth/companySignIn';
 import CompanySignUp from './sections/auth/companyAuth/companySignUp';
 
+import CompanyAnalysis from './sections/companyDashboard/pages/analysis/analysis';
+
 import UserDashboardLayout from './sections/userDashboard/userdashboardLayout';
+import CompanyDashboardLayout from './sections/companyDashboard/companyDashboardLayout';
 
 function ConditionalHeader() {
     const location = useLocation();
@@ -37,7 +40,7 @@ function WebRoutes() {
 
     return (
         <Router>
-            <ConditionalHeader />
+            {/* <ConditionalHeader /> */}
             
             <Routes>
                 <Route path="/" element={<Home />} />
@@ -53,9 +56,13 @@ function WebRoutes() {
                     <Route path="dashboard/:studentId" element={<Analysis />} />
                     <Route path="upload/:studentId" element={<Upload />} />
                 </Route>
+
+                <Route path="/company" element={<CompanyDashboardLayout />}>
+                    <Route path="dashboard/:companyId" element={<CompanyAnalysis />} />
+                </Route>
             </Routes>
             
-            <ConditionalFooter />
+            {/* <ConditionalFooter /> */}
         </Router>
     );
 }

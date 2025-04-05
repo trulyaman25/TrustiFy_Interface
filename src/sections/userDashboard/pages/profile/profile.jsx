@@ -16,7 +16,7 @@ function Profile() {
         lastName: "",
         phoneNumber: "",
         collegeRollNumber: "",
-        enrollmentNumber: "",
+        collegeName: "",
         aadharCardNumber: "",
         branch: "",
         collegeEmailId: "",
@@ -49,7 +49,7 @@ function Profile() {
                     email: data.email || "",
                     phoneNumber: data.phoneNumber || "",
                     collegeRollNumber: data.collegeRollNumber || "",
-                    enrollmentNumber: data.enrollmentNumber || "",
+                    collegeName: data.collegeName || "",
                     aadharCardNumber: data.aadharCardNumber || "",
                     branch: data.branch || "",
                     collegeEmailId: data.collegeEmailId || "",
@@ -104,7 +104,7 @@ function Profile() {
                 email: studentData.email || "",
                 phoneNumber: studentData.phoneNumber || "",
                 collegeRollNumber: studentData.collegeRollNumber || "",
-                enrollmentNumber: studentData.enrollmentNumber || "",
+                collegeName: studentData.collegeName || "",
                 aadharCardNumber: studentData.aadharCardNumber || "",
                 branch: studentData.branch || "",
                 collegeEmailId: studentData.collegeEmailId || "",
@@ -225,10 +225,10 @@ function Profile() {
                             />
                             <input 
                                 type="text" 
-                                name="enrollmentNumber" 
-                                value={formData.enrollmentNumber} 
+                                name="collegeName" 
+                                value={formData.collegeName} 
                                 onChange={handleChange} 
-                                placeholder="Enrollment Number" 
+                                placeholder="College Name" 
                                 disabled={!isEditing}
                                 className={`p-4 rounded-lg ${!isEditing ? 'bg-gray-100' : 'bg-blue-50'} border border-gray-300 shadow-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:cursor-not-allowed`}
                             />

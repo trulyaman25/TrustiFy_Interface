@@ -17,7 +17,7 @@ function StudentSignUp({ isPanel = false, setMode }) {
         walletAddress: '',
         phoneNumber: '',
         collegeRollNumber: '',
-        enrollmentNumber: '',
+        collegeName: '',
         aadharCardNumber: '',
         branch: '',
         collegeEmailId: ''
@@ -230,16 +230,16 @@ function StudentSignUp({ isPanel = false, setMode }) {
                                 />
                             </div>
                             <div>
-                                <label htmlFor="enrollmentNumber" className="block text-sm font-albulaBold text-gray-600">
-                                    Enrollment Number
+                                <label htmlFor="collegeName" className="block text-sm font-albulaBold text-gray-600">
+                                    College Name
                                 </label>
                                 <input
                                     type="text"
-                                    id="enrollmentNumber"
-                                    name="enrollmentNumber"
+                                    id="collegeName"
+                                    name="collegeName"
                                     required
                                     className="mt-1 w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    value={formData.enrollmentNumber}
+                                    value={formData.collegeName}
                                     onChange={handleChange}
                                 />
                             </div>

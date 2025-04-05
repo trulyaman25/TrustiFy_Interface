@@ -1,18 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import WarningIcon from '../../../../assets/icons/warningIcon.png';
 import VerifiedDocumentIcon from '../../../../assets/icons/verifiedDocument.png';
 
-function Analysis() {
+function CompanyAnalysis() {
+    const navigate = useNavigate();
     const { user } = useAuth0();
-    const [showActions, setShowActions] = useState(Array(4).fill(false));
     const [documents, setDocuments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [docTypes, setDocTypes] = useState([]); 
+    const { companyId } = useParams();
+
+    useEffect(() => {
+        const fetchDocuments = async () => {
+            try {
+                const response = await axios.get(`http://127.0.0.1:5000/c/${companyId}`);
+                console.log("Response Data:", response.data);
+                setDocuments(response.data);
+            } catch (err) {
+                console.error("Error fetching documents:", err);
+                setError('Failed to fetch documents: ' + err.message);
+                if (err.response?.status === 401) {
+                    navigate('/studentLogin');
+                }
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchDocuments();
+    }, [companyId, navigate]);
 
     const verifiedCount = documents.filter(doc => doc.verify_flag).length;
     const unverifiedCount = documents.length - verifiedCount;
@@ -24,29 +44,6 @@ function Analysis() {
         day: 'numeric',
     });
 
-    useEffect(() => {
-        const fetchDocuments = async () => {
-            if (!user?.sub) {
-                setError('User ID is not available.');
-                setLoading(false);
-                return;
-            }
-
-            try {
-                const response = await axios.get(`http://127.0.0.1:5000/c/${user.sub}`);
-                console.log("Response Data:", response.data);
-                setDocuments(response.data);
-            } catch (err) {
-                console.error("Error fetching documents:", err);
-                setError('Failed to fetch documents: ' + err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchDocuments();
-    }, [user.sub]);
-
     return (
         <>
             <main className="fixed w-[calc(100vw-450px)] h-screen pt-7 pb-7 pr-7 font-albulaRegular">   
@@ -56,7 +53,7 @@ function Analysis() {
                         <p className="text-slate-500 mt-3 ml-1 font-albulaMedium">{today}</p>
 
                         <p className="text-md text-gray-600 font-albulaRegular mt-8">
-                            Welcome to <span className="text-violet-600">CheckMate</span>! Securely manage, upload, and access all your important documents in one place. 
+                            Welcome to <span className="text-violet-600">Trustify</span>! Securely manage, upload, and access all your important documents in one place. 
                             With <span className="text-violet-600">decentralized storage</span> and <span className="text-violet-600">advanced security</span> features, 
                             your data is always protected and readily available at your fingertips.
                         </p>
@@ -174,7 +171,7 @@ function Analysis() {
                                 </a>
 
                                 <div className='w-[300px] h-fit rounded-3xl p-8 flex flex-col justify-center items-center border-dashed border-2 border-[#8360ff] mt-5'>
-                                    <NavLink to="/dashboard/upload" className='w-full h-[70px] rounded-2xl font-albulaBold uppercase text-white bg-[#8360ff] hover:bg-purple-700 transition-all duration-300 hover:drop-shadow-xl flex justify-center items-center'>
+                                    <NavLink to={`/student/upload/${companyId}`} className='w-full h-[70px] rounded-2xl font-albulaBold uppercase text-white bg-[#8360ff] hover:bg-purple-700 transition-all duration-300 hover:drop-shadow-xl flex justify-center items-center'>
                                             Upload Documents
                                     </NavLink>
                                 </div>
@@ -187,4 +184,4 @@ function Analysis() {
     );
 }
 
-export default Analysis;
+export default CompanyAnalysis;

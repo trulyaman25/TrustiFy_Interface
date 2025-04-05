@@ -309,6 +309,25 @@ def register_student():
         # Add registration timestamp
         data['registrationDate'] = datetime.utcnow()
         
+        # Check if the college exists in the colleges collection
+        college_name = data.get('collegeName')
+        if college_name:
+            existing_college = mongo.db.colleges.find_one({"name": college_name})
+            if not existing_college:
+                # Add new college to colleges collection
+                college_data = {
+                    "name": college_name,
+                    "studentCount": 1,
+                    "firstAdded": datetime.utcnow()
+                }
+                mongo.db.colleges.insert_one(college_data)
+            else:
+                # Increment student count for existing college
+                mongo.db.colleges.update_one(
+                    {"name": college_name},
+                    {"$inc": {"studentCount": 1}}
+                )
+        
         # Insert the student data into MongoDB
         result = mongo.db.students.insert_one(data)
         
@@ -522,6 +541,26 @@ def update_company(company_id):
             
         return jsonify({"message": "Company updated successfully"}), 200
         
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/colleges', methods=['GET'])
+def get_all_colleges():
+    try:
+        # Fetch all colleges from the colleges collection
+        colleges = list(mongo.db.colleges.find({}, {'_id': 0}))
+        return jsonify(colleges), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/colleges/<college_name>', methods=['GET'])
+def get_college_details(college_name):
+    try:
+        # Find college by name
+        college = mongo.db.colleges.find_one({"name": college_name}, {'_id': 0})
+        if not college:
+            return jsonify({"error": "College not found"}), 404
+        return jsonify(college), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
