@@ -85,17 +85,17 @@ function Home() {
 							<div className="text-5xl text-center font-googleSansBold capitalize">verified documents & profile</div>
 						</div>
 
-						<div>
+						<div className="text-center text-xl font-googleSansLight capitalize mb-5">
 							from academic credentials to professional profiles, streamline verification using AI and secure infrastructure
 						</div>
 
 						<div className="flex flex-row justify-center items-center gap-1 p-1 border border-gray-300 rounded-full">
-							<button className="rounded-full font-googleSansBold text-xl bg-gray-950 hover:bg-slate-950 text-white transition-all ease-in-out duration-100 flex flex-row justify-center items-center gap-3 p-1 pr-7 py-1">
+							<button className="rounded-full font-googleSansBlack text-xl bg-gray-950 hover:bg-slate-950 text-white transition-all ease-in-out duration-100 flex flex-row justify-center items-center gap-3 p-1 pr-7 py-1">
 								<span className="w-[44px] h-[44px] bg-white text-gray-950 rounded-full flex items-center justify-center"> ➔ </span>
-								<span>Get Started</span>
+								<span className="font-googleSansMedium">Get Started</span>
 							</button>
 
-							<button className="px-7 py-3 rounded-full font-googleSansBold text-xl transition-all ease-in-out duration-100">learn more</button>
+							<button className="px-7 py-3 rounded-full font-googleSansMedium text-xl transition-all ease-in-out duration-100">learn more</button>
 						</div>
 					</div>
 				</div>
