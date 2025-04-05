@@ -3,8 +3,9 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ethers } from 'ethers';
 import MetaMaskLogo from '../../../assets/icons/metamask-fox.svg';
+import Logo from '../../../assets/images/illustration/logo.png';
 
-function StudentSignUp() {
+function StudentSignUp({ isPanel = false, setMode }) {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         studentId: '',
@@ -72,21 +73,36 @@ function StudentSignUp() {
         try {
             const response = await axios.post('http://127.0.0.1:5000/register-student', submissionData);
             console.log('Registration successful:', response.data);
-            navigate('/studentLogin');
+            setMode('login');
         } catch (err) {
             setError(err.response?.data?.error || 'Registration failed');
             console.error('Registration error:', err);
         }
     };
 
+    const containerClasses = isPanel 
+        ? "w-full h-full font-albulaRegular" 
+        : "fixed w-full h-screen font-albulaRegular";
+
+    const sectionClasses = isPanel
+        ? "w-full bg-white h-fit px-12 py-6"
+        : "w-[800px] bg-white h-fit rounded-[40px] px-12 shadow-xl";
+
     return (
-        <main className="fixed w-full h-screen font-albulaRegular">
-            <div className="flex flex-row justify-center items-center bg-white text-gray-900 rounded-[40px] h-full border-gray-400 shadow-inner">
-                <section className='w-[800px] bg-white h-fit rounded-[40px] p-12 shadow-xl'>
-                    <div className="flex justify-between items-center mb-8">
+        <main className={containerClasses}>
+            <div className={`flex flex-row justify-center items-center bg-white text-gray-900 ${!isPanel && "h-full border-gray-400 shadow-inner"}`}>
+                <section className={sectionClasses}>
+                    <div className="flex flex-col items-center justify-center mb-8">
+                        <img src={Logo} alt="TrustiFy Logo" className="w-24 h-24 mb-4"/>
                         <h1 className="font-albulaHeavy text-4xl text-slate-800">Student Sign Up</h1>
                     </div>
                     
+                    {error && (
+                        <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl mb-6">
+                            {error}
+                        </div>
+                    )}
+
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="grid grid-cols-2 gap-6">
                             <div>
@@ -278,8 +294,6 @@ function StudentSignUp() {
                             </div>
                         )}
 
-                        {error && <p className="text-red-500 text-sm">{error}</p>}
-
                         <div>
                             <button
                                 type="submit"
@@ -289,14 +303,16 @@ function StudentSignUp() {
                             </button>
                         </div>
 
-                        <div className="text-center mt-4">
-                            <p className="text-sm text-gray-600">
-                                Already have an account?{' '}
-                                <NavLink to="/studentLogin" className="font-albulaMedium text-indigo-600 hover:text-indigo-500">
-                                    Sign in
-                                </NavLink>
-                            </p>
-                        </div>
+                        {!isPanel && (
+                            <div className="text-center mt-4">
+                                <p className="text-sm text-gray-600">
+                                    Already have an account?{' '}
+                                    <NavLink to="/studentLogin" className="font-albulaMedium text-indigo-600 hover:text-indigo-500">
+                                        Sign in
+                                    </NavLink>
+                                </p>
+                            </div>
+                        )}
                     </form>
                 </section>
             </div>

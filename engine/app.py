@@ -436,5 +436,94 @@ def store_document(student_id):
         print(f"Error storing document: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
+@app.route('/register-company', methods=['POST'])
+def register_company():
+    try:
+        data = request.json
+        # Add registration timestamp and generate companyId
+        data['registrationDate'] = datetime.utcnow()
+        data['companyId'] = f"COM{datetime.now().strftime('%Y%m%d%H%M%S')}"
+        
+        # Insert the company data into MongoDB
+        result = mongo.db.companies.insert_one(data)
+        
+        response = jsonify({
+            "message": "Company registered successfully",
+            "companyId": data['companyId']
+        })
+        return response, 201
+        
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/login-company', methods=['POST'])
+def login_company():
+    try:
+        data = request.json
+        if not data or 'email' not in data or 'password' not in data:
+            return jsonify({"error": "Email and password are required"}), 400
+        
+        # Find the company by email
+        company = mongo.db.companies.find_one({"email": data['email']})
+        
+        if not company:
+            return jsonify({"error": "Company not found"}), 404
+            
+        # Check password (in a real app, you should compare hashed passwords)
+        if company['password'] != data['password']:
+            return jsonify({"error": "Invalid password"}), 401
+            
+        # Convert ObjectId to string for JSON serialization
+        company['_id'] = str(company['_id'])
+        
+        return jsonify({
+            "message": "Login successful",
+            "companyId": company['companyId'],
+            "companyName": company['companyName'],
+            "email": company['email']
+        }), 200
+        
+    except Exception as e:
+        print("Login error:", str(e))
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/company/<company_id>', methods=['GET'])
+def get_company(company_id):
+    try:
+        # Find the company by companyId
+        company = mongo.db.companies.find_one({"companyId": company_id})
+        
+        if not company:
+            return jsonify({"error": "Company not found"}), 404
+            
+        # Convert ObjectId to string for JSON serialization
+        company['_id'] = str(company['_id'])
+        
+        return jsonify(company), 200
+        
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/company/<company_id>', methods=['PUT'])
+def update_company(company_id):
+    try:
+        data = request.json
+        # Remove any fields that shouldn't be updated
+        if '_id' in data:
+            del data['_id']
+            
+        result = mongo.db.companies.update_one(
+            {"companyId": company_id},
+            {"$set": data}
+        )
+        
+        if result.matched_count == 0:
+            return jsonify({"error": "Company not found"}), 404
+            
+        return jsonify({"message": "Company updated successfully"}), 200
+        
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 if __name__ == '__main__':
    app.run(debug=True)
