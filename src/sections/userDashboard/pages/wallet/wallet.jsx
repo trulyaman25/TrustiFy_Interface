@@ -14,15 +14,6 @@ function Wallet() {
     const [selectedDocument, setSelectedDocument] = useState(null);
 
     useEffect(() => {
-        // Check if user is authenticated and has student data
-        const studentData = localStorage.getItem('studentData');
-        const isAuthenticated = localStorage.getItem('isAuthenticated');
-        
-        if (!studentData || !isAuthenticated) {
-            navigate('/studentLogin');
-            return;
-        }
-
         const fetchDocuments = async () => {
             if (!studentId) {
                 setError('Student ID is not available.');

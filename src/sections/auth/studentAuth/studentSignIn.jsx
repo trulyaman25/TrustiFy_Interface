@@ -50,14 +50,13 @@ function StudentSignIn() {
         
         try {
             const response = await axios.post('http://127.0.0.1:5000/login-student', formData);
-            console.log('Login successful:', response.data);
+            const { studentId } = response.data;
             
-            // Store student data in localStorage
-            localStorage.setItem('studentData', JSON.stringify(response.data));
-            localStorage.setItem('isAuthenticated', 'true');
+            if (!studentId) {
+                throw new Error('No student ID received from server');
+            }
             
-            // Navigate to dashboard
-            navigate(`/student/dashboard/${response.data.studentId}`);
+            navigate(`/student/dashboard/${studentId}`);
         } catch (err) {
             console.error('Login error:', err);
             setError(err.response?.data?.error || 'Invalid email or password');

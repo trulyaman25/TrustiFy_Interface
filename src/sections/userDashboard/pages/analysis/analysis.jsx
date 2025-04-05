@@ -9,22 +9,36 @@ import VerifiedDocumentIcon from '../../../../assets/icons/verifiedDocument.png'
 function Analysis() {
     const navigate = useNavigate();
     const { user } = useAuth0();
-    const [showActions, setShowActions] = useState(Array(4).fill(false));
     const [documents, setDocuments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [docTypes, setDocTypes] = useState([]); 
     const { studentId } = useParams();
 
-    // Check authentication
     useEffect(() => {
-        const studentData = localStorage.getItem('studentData');
-        const isAuthenticated = localStorage.getItem('isAuthenticated');
-        
-        if (!studentData || !isAuthenticated) {
-            navigate('/studentLogin');
-        }
-    }, [navigate]);
+        const fetchDocuments = async () => {
+            if (!studentId) {
+                setError('Student ID is not available');
+                navigate('/studentLogin');
+                return;
+            }
+
+            try {
+                const response = await axios.get(`http://127.0.0.1:5000/c/${studentId}`);
+                console.log("Response Data:", response.data);
+                setDocuments(response.data);
+            } catch (err) {
+                console.error("Error fetching documents:", err);
+                setError('Failed to fetch documents: ' + err.message);
+                if (err.response?.status === 401) {
+                    navigate('/studentLogin');
+                }
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchDocuments();
+    }, [studentId, navigate]);
 
     const verifiedCount = documents.filter(doc => doc.verify_flag).length;
     const unverifiedCount = documents.length - verifiedCount;
@@ -36,29 +50,6 @@ function Analysis() {
         day: 'numeric',
     });
 
-    useEffect(() => {
-        const fetchDocuments = async () => {
-            if (!studentId) {
-                setError('Student ID is not available');
-                setLoading(false);
-                return;
-            }
-
-            try {
-                const response = await axios.get(`http://127.0.0.1:5000/c/${studentId}`);
-                console.log("Response Data:", response.data);
-                setDocuments(response.data);
-            } catch (err) {
-                console.error("Error fetching documents:", err);
-                setError('Failed to fetch documents: ' + err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchDocuments();
-    }, [studentId]);
-
     return (
         <>
             <main className="fixed w-[calc(100vw-450px)] h-screen pt-7 pb-7 pr-7 font-albulaRegular">   
@@ -68,7 +59,7 @@ function Analysis() {
                         <p className="text-slate-500 mt-3 ml-1 font-albulaMedium">{today}</p>
 
                         <p className="text-md text-gray-600 font-albulaRegular mt-8">
-                            Welcome to <span className="text-violet-600">CheckMate</span>! Securely manage, upload, and access all your important documents in one place. 
+                            Welcome to <span className="text-violet-600">Trustify</span>! Securely manage, upload, and access all your important documents in one place. 
                             With <span className="text-violet-600">decentralized storage</span> and <span className="text-violet-600">advanced security</span> features, 
                             your data is always protected and readily available at your fingertips.
                         </p>

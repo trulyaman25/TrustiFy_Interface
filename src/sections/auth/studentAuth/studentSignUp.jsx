@@ -13,7 +13,13 @@ function StudentSignUp() {
         email: '',
         password: '',
         confirmPassword: '',
-        walletAddress: ''
+        walletAddress: '',
+        phoneNumber: '',
+        collegeRollNumber: '',
+        enrollmentNumber: '',
+        aadharCardNumber: '',
+        branch: '',
+        collegeEmailId: ''
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -156,6 +162,99 @@ function StudentSignUp() {
                                     required
                                     className="mt-1 w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                     value={formData.confirmPassword}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-6">
+                            <div>
+                                <label htmlFor="phoneNumber" className="block text-sm font-albulaBold text-gray-600">
+                                    Phone Number
+                                </label>
+                                <input
+                                    type="tel"
+                                    id="phoneNumber"
+                                    name="phoneNumber"
+                                    required
+                                    className="mt-1 w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    value={formData.phoneNumber}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="collegeEmailId" className="block text-sm font-albulaBold text-gray-600">
+                                    College Email ID
+                                </label>
+                                <input
+                                    type="email"
+                                    id="collegeEmailId"
+                                    name="collegeEmailId"
+                                    required
+                                    className="mt-1 w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    value={formData.collegeEmailId}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-6">
+                            <div>
+                                <label htmlFor="collegeRollNumber" className="block text-sm font-albulaBold text-gray-600">
+                                    College Roll Number
+                                </label>
+                                <input
+                                    type="text"
+                                    id="collegeRollNumber"
+                                    name="collegeRollNumber"
+                                    required
+                                    className="mt-1 w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    value={formData.collegeRollNumber}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="enrollmentNumber" className="block text-sm font-albulaBold text-gray-600">
+                                    Enrollment Number
+                                </label>
+                                <input
+                                    type="text"
+                                    id="enrollmentNumber"
+                                    name="enrollmentNumber"
+                                    required
+                                    className="mt-1 w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    value={formData.enrollmentNumber}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-6">
+                            <div>
+                                <label htmlFor="aadharCardNumber" className="block text-sm font-albulaBold text-gray-600">
+                                    Aadhar Card Number
+                                </label>
+                                <input
+                                    type="text"
+                                    id="aadharCardNumber"
+                                    name="aadharCardNumber"
+                                    required
+                                    className="mt-1 w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    value={formData.aadharCardNumber}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="branch" className="block text-sm font-albulaBold text-gray-600">
+                                    Branch
+                                </label>
+                                <input
+                                    type="text"
+                                    id="branch"
+                                    name="branch"
+                                    required
+                                    className="mt-1 w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    value={formData.branch}
                                     onChange={handleChange}
                                 />
                             </div>

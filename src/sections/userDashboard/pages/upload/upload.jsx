@@ -19,23 +19,32 @@ function Upload() {
     const [loading, setLoading] = useState(false);
     const [ipfsHash, setIpfsHash] = useState(null);
     const [verifyStatus, setVerifyStatus] = useState(false);
-
+    const [studentData, setStudentData] = useState(null);
     const [currentStage, setCurrentStage] = useState(0);
-
     const [newHash, setNewHash] = useState(null);
     const [error, setError] = useState(false);
-
     const { studentId } = useParams();
 
     useEffect(() => {
-        // Check if user is authenticated and has student data
-        const studentData = localStorage.getItem('studentData');
-        const isLocalAuthenticated = localStorage.getItem('isAuthenticated');
-        
-        if (!studentData || !isLocalAuthenticated) {
-            navigate('/studentLogin');
-        }
-    }, [navigate]);
+        const fetchStudentData = async () => {
+            if (!studentId) {
+                navigate('/studentLogin');
+                return;
+            }
+
+            try {
+                const response = await axios.get(`http://127.0.0.1:5000/student/${studentId}`);
+                setStudentData(response.data);
+            } catch (err) {
+                console.error('Error fetching student data:', err);
+                if (err.response?.status === 401) {
+                    navigate('/studentLogin');
+                }
+            }
+        };
+
+        fetchStudentData();
+    }, [studentId, navigate]);
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
@@ -82,9 +91,10 @@ function Upload() {
             const hash = response.data.IpfsHash;
             setIpfsHash(hash);
             
-        
             const backendData = JSON.stringify({
-                ipfs_link: hash
+                ipfs_link: hash,
+                docType: docType,
+                aadharCardNumber: studentData?.aadharCardNumber || ''
             });
 
             const config = {
@@ -128,7 +138,7 @@ function Upload() {
                     setCurrentStage(3);
 
                     let additionalData = JSON.stringify({
-                        "ipfs_link": hash // Use the same IPFS hash
+                        "ipfs_link": hash
                     });
 
                     let additionalConfig = {
