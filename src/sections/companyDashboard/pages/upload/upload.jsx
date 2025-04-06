@@ -6,7 +6,7 @@ import axios from 'axios';
 import WarningIcon from '../../../../assets/icons/warningIcon.png';
 import VerifiedDocumentIcon from '../../../../assets/icons/verifiedDocument.png';
 
-function CompanyAnalysis() {
+function Upload() {
     const navigate = useNavigate();
     const { user } = useAuth0();
     const [documents, setDocuments] = useState([]);
@@ -184,4 +184,4 @@ function CompanyAnalysis() {
     );
 }
 
-export default CompanyAnalysis;
+export default Upload;

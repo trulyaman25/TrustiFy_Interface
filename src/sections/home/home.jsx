@@ -63,29 +63,29 @@ function Home() {
   const [authMode, setAuthMode] = useState("login")
   const [userType, setUserType] = useState("student")
 
-  const handleStudentLogin = () => {
-    setUserType("student")
-    setAuthMode("login")
-    setIsAuthPanelOpen(true)
-  }
+	const handleStudentLogin = () => {
+		setUserType('student')
+		setAuthMode('login')
+		setIsAuthPanelOpen(true)
+	}
 
-  const handleStudentSignup = () => {
-    setUserType("student")
-    setAuthMode("signup")
-    setIsAuthPanelOpen(true)
-  }
+	const handleStudentSignup = () => {
+		setUserType('student')
+		setAuthMode('signup')
+		setIsAuthPanelOpen(true)
+	}
 
-  const handleCompanyLogin = () => {
-    setUserType("company")
-    setAuthMode("login")
-    setIsAuthPanelOpen(true)
-  }
+	const handleCompanyLogin = () => {
+		setUserType('company')
+		setAuthMode('login')
+		setIsAuthPanelOpen(true)
+	}
 
-  const handleCompanySignup = () => {
-    setUserType("company")
-    setAuthMode("signup")
-    setIsAuthPanelOpen(true)
-  }
+	const handleCompanySignup = () => {
+		setUserType('company')
+		setAuthMode('signup')
+		setIsAuthPanelOpen(true)
+	}
 
   return (
     <>
@@ -100,48 +100,24 @@ function Home() {
                 <span className="font-googleSansBold text-4xl capitalize text-gray-900">verified</span>
               </span>
 
-              <div className="flex flex-row justify-center items-center gap-4">
-                <NavLink
-                  to=""
-                  className="px-4 py-2 transition-all duration-300 w-fit flex flex-row justify-center items-center font-googleSansLight text-black hover:text-[#6536ff]"
-                  onClick={() =>
-                    window.scrollTo({ top: document.getElementById("home").offsetTop, behavior: "smooth" })
-                  }
-                >
-                  home
-                </NavLink>
+							<div className="flex flex-row justify-center items-center gap-4">
+								<NavLink to="" className="px-4 py-2 transition-all duration-300 w-fit flex flex-row justify-center items-center font-googleSansLight text-black hover:text-[#6536ff]" onClick={() => window.scrollTo({ top: document.getElementById("home").offsetTop, behavior: "smooth" })} >
+								home
+								</NavLink>
 
-                <NavLink
-                  to=""
-                  className="px-4 py-2 transition-all duration-300 w-fit flex flex-row justify-center items-center font-googleSansLight text-black hover:text-[#6536ff]"
-                  onClick={() =>
-                    window.scrollTo({ top: document.getElementById("about").offsetTop, behavior: "smooth" })
-                  }
-                >
-                  about
-                </NavLink>
+								<NavLink to="" className="px-4 py-2 transition-all duration-300 w-fit flex flex-row justify-center items-center font-googleSansLight text-black hover:text-[#6536ff]" onClick={() => window.scrollTo({ top: document.getElementById("about").offsetTop, behavior: "smooth" })} >
+								about
+								</NavLink>
 
-                <NavLink
-                  to=""
-                  className="px-4 py-2 transition-all duration-300 w-fit flex flex-row justify-center items-center font-googleSansLight text-black hover:text-[#6536ff]"
-                  onClick={() =>
-                    window.scrollTo({ top: document.getElementById("team").offsetTop, behavior: "smooth" })
-                  }
-                >
-                  team
-                </NavLink>
+								<NavLink to="" className="px-4 py-2 transition-all duration-300 w-fit flex flex-row justify-center items-center font-googleSansLight text-black hover:text-[#6536ff]" onClick={() => window.scrollTo({ top: document.getElementById("team").offsetTop, behavior: "smooth" })} >
+								team
+								</NavLink>
 
-                <NavLink
-                  to=""
-                  className="px-4 py-2 transition-all duration-300 w-fit flex flex-row justify-center items-center font-googleSansLight text-black hover:text-[#6536ff]"
-                  onClick={() =>
-                    window.scrollTo({ top: document.getElementById("team").offsetTop, behavior: "smooth" })
-                  }
-                >
-                  contact us
-                </NavLink>
-              </div>
-            </div>
+								<NavLink to="" className="px-4 py-2 transition-all duration-300 w-fit flex flex-row justify-center items-center font-googleSansLight text-black hover:text-[#6536ff]" onClick={() => window.scrollTo({ top: document.getElementById("team").offsetTop, behavior: "smooth" })} >
+								contact us
+								</NavLink>
+							</div>
+						</div>
 
             <div className="w-fit h-fit flex flex-row justify-between items-center gap-3 border border-gray-400 p-1 rounded-full transition-all ease-in-out">
               <button
