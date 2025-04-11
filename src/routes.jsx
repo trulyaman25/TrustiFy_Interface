@@ -20,7 +20,7 @@ import CompanyUpload from './sections/companyDashboard/pages/upload/upload';
 import CompanySettings from './sections/companyDashboard/pages/settings/settings';
 import ResumeAnalysis from './sections/companyDashboard/pages/analysis/resumeAnalysis';
 
-import UserDashboardLayout from './sections/userDashboard/userdashboardLayout';
+import UserDashboardLayout from './sections/userDashboard/userDashboardLayout';
 
 function WebRoutes() {
     return (
