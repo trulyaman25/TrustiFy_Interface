@@ -1,5 +1,21 @@
 [
     {
+        "name": "Aman Kumar",
+        "role": "Blockchain/Full Stack Developer",
+        "description": "Blockchain and Full Stack developer, focused on secure, decentralized document storage for checkMate. Aman also leads UI design, creating an intuitive interface that enhances user experience",
+        "img": "/teamMembers/amanImg.jpg",
+        "socialLinks": [
+            {
+                "url": "https://www.instagram.com/amanwhoooo/",
+                "icon": "instagram"
+            },
+            {
+                "url": "https://www.linkedin.com/in/amankumar25/",
+                "icon": "linkedIn"
+            }
+        ]
+    },
+    {
         "name": "Sparsh Jaggi",
         "role": "AI/ML Developer",
         "description": "AI/ML developer, implementing advanced AI models for document analysis and verification. Sparsh's contributions in computer vision enable precise document checks, automating verification steps.",
@@ -27,22 +43,6 @@
             },
             {
                 "url": "https://www.linkedin.com/in/aayush-gupta-020284263/",
-                "icon": "linkedIn"
-            }
-        ]
-    },
-    {
-        "name": "Aman Kumar",
-        "role": "Blockchain/Full Stack Developer",
-        "description": "Blockchain and Full Stack developer, focused on secure, decentralized document storage for checkMate. Aman also leads UI design, creating an intuitive interface that enhances user experience",
-        "img": "/teamMembers/amanImg.jpg",
-        "socialLinks": [
-            {
-                "url": "https://www.instagram.com/amanwhoooo/",
-                "icon": "instagram"
-            },
-            {
-                "url": "https://www.linkedin.com/in/amankumar25/",
                 "icon": "linkedIn"
             }
         ]
