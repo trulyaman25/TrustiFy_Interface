@@ -217,3 +217,46 @@ body {
     background-color: #6536ff;
     border-radius: 10px;
 }
+
+.tech-marquee {
+    animation: marquee 40s linear infinite;
+}
+
+.tech-marquee:hover {
+    animation-play-state: paused;
+}
+
+.tech-item {
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+/* Create zoom effect for centered items */
+.tech-item img {
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.tech-item:hover img {
+    transform: scale(1.);
+}
+
+/* Add perspective to create a 3D effect */
+.tech-marquee-wrapper {
+    perspective: 1000px;
+}
+
+.tech-marquee {
+    transform-style: preserve-3d;
+}
+
+.tech-item {
+    transform: translateZ(0);
+}
+
+/* Center items scale up based on their position */
+@media (min-width: 768px) {
+    .tech-item {
+        transform: scale(calc(1 + (1 - (2 * abs(var(--distance-from-center, 0))))));
+    }
+}

@@ -175,6 +175,13 @@ function CompanyAnalysis() {
                                             Upload Documents
                                     </NavLink>
                                 </div>
+
+                                {/* Add new Resume Analysis button */}
+                                <div className='w-[300px] h-fit rounded-3xl p-8 flex flex-col justify-center items-center border-dashed border-2 border-[#8360ff] mt-5'>
+                                    <NavLink to={`/company/resume-analysis/${companyId}`} className='w-full h-[70px] rounded-2xl font-albulaBold uppercase text-white bg-green-600 hover:bg-green-700 transition-all duration-300 hover:drop-shadow-xl flex justify-center items-center'>
+                                            Analyze Resumes
+                                    </NavLink>
+                                </div>
                             </div>
                         </main>
                     </section>

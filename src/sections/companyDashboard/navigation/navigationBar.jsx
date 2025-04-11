@@ -12,7 +12,7 @@ function CompanyDashboardLayout() {
     const { companyId } = useParams();
     return (
         <>
-            <main className='bg-white w-screen h-screen p-6'>
+            <main className='bg-[#f9f9fd] w-screen h-screen p-6'>
                 <nav className="w-[125px] h-full flex flex-col justify-between items-center bg-[#6d69f7] rounded-full shadow-2xl py-10">
                     <div>
                         <img src={Logo} alt="Verified Logo" className='w-[75px] h-[75px] invert'/>

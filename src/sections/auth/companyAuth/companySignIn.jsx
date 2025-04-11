@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ethers } from 'ethers';
 import MetaMaskLogo from '../../../assets/icons/metamask-fox.svg';
-import Logo from '../../../assets/branding/checkMate - Logo.png';
+import Logo from '../../../assets/images/illustration/logo.png';
 
 function CompanySignIn({ isPanel = false }) {
     const navigate = useNavigate();

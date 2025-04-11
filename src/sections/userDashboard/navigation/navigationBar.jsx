@@ -72,6 +72,11 @@ function DashboardNavbar() {
                             </NavLink>
                         </li>
                         <li className="w-full">
+                            <NavLink to={`/student/apply/${studentId}`} className={({ isActive }) => `flex items-center space-x-4 w-full transition ease-in-out ${isActive ? "text-[#9676ff]" : "hover:text-[#9676ff]"}`}>
+                                <span className="font-albulaHeavy px-12 text-2xl">Apply in Company</span>
+                            </NavLink>
+                        </li>
+                        <li className="w-full">
                             <NavLink to={`/student/profile/${studentId}`} className={({ isActive }) => `flex items-center space-x-4 w-full transition ease-in-out ${isActive ? "text-[#9676ff]" : "hover:text-[#9676ff]"}`}>
                                 <span className="font-albulaHeavy px-12 text-2xl">Profile</span>
                             </NavLink>

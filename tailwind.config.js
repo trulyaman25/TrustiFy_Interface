@@ -34,15 +34,31 @@ export default {
 				'googleSansBoldItalic': ['GoogleSans-BoldItalic', 'sans-serif'],
 				'googleSansBlackItalic': ['GoogleSans-BlackItalic', 'sans-serif'],
 		  	},
+			keyframes: {
+				marquee: {
+					'0%': { transform: 'translateX(0%)' },
+					'100%': { transform: 'translateX(-50%)' }
+				},
+				scaleUpCenter: {
+					'0%, 100%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(1.5)' }
+				}
+			},
+			animation: {
+				'marquee': 'marquee 40s linear infinite',
+				'scale-up-center': 'scaleUpCenter 0.3s ease-out'
+			},
 			backdropBlur: {
-                md: '12px',
-            },
+				md: '12px',
+			},
 		},
 	},
 	variants: {
-        extend: {
-            backdropBlur: ['responsive'],
-        },
-    },
+		extend: {
+			backdropBlur: ['responsive'],
+			animation: ['hover', 'group-hover'],
+			scale: ['hover', 'group-hover'],
+		},
+	},
 	plugins: [],
 }
