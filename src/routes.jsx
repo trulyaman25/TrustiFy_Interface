@@ -22,11 +22,15 @@ import ResumeAnalysis from './sections/companyDashboard/pages/analysis/resumeAna
 
 import UserDashboardLayout from './sections/userDashboard/userDashboardLayout';
 
+import { Analytics } from "@vercel/analytics/react"
+
 function WebRoutes() {
     return (
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
+
+                <Analytics />
 
                 <Route path="studentLogin" element={<StudentSignIn/>}/>
                 <Route path="studentRegistration" element={<StudentSignUp/>}/>
